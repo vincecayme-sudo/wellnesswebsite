@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glow & Flow | Mother & Son Spa</title>
+    
+    <!-- 
+        EDIT TITLE HERE: Change "Harmony Wellness" to your actual business name.
+    -->
+
+    <style>
+        /* =========================================
+           CSS VARIABLES (EASY TO EDIT COLORS)
+           ========================================= */
+        :root {
+            --primary-color: #6B8E23;   /* Olive Drab - Wholesome Green */
+            --secondary-color: #F8F8E7; /* Beige - Soft Background */
+            --tertiary-color: goldenrod;
+            --quarterary-color: #595f73; /* Nightshadow blue */
+            --text-dark: #333333;        /* Dark Grey - Main Text */
+            --text-light: #666666;       /* Light Grey - Subtitles */
+            --text-med: #563520;
+            --white: #ffffff;
+            
+            /* Font Settings (Optional) */
+            --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            --font-secondary: Calibri, "Candara", "Segoe UI", Optima, Arial, sans-serif;
+            --font-tertiary: 'Montserrat', sans-serif;
+        }
+
+        /* =========================================
+           GLOBAL STYLES
+           ========================================= */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-secondary);
+            color: var(--text-med);
+            line-height: 1.6;
+            background-color: #fafafa;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        
+        /* Container to center content */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            
+        }
+
+        /* =========================================
+           HEADER & NAVIGATION
+           ========================================= */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            font-family: var(--font-secondary);
+            color: goldenrod;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        nav a:hover { color: var(--primary-color); }
+
+        /* =========================================
+           HERO SECTION (Top Banner)
+           ========================================= */
+        .hero {
+            padding: 4rem 0;
+            background-color: var(--secondary-color);
+        }
+
+        .hero-grid { 
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Two columns */
+            gap: 5rem;
+            align-items: center;
+            text-align: center;
+
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-family: var(--font-tertiary);
+            font-weight: 500;
+            letter-spacing: 1px;
+            word-spacing: -3px;
+            color: var(--quarterary-color);
+        }
+
+        .hero h2 { 
+            font-size: 1.5rem;
+            font-weight: 200;
+            font-family: var(--font-main);
+            letter-spacing: 5px;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-med);
+            max-width: 600px;
+            margin-bottom: 1rem;
+            /*margin: 0 auto 2rem auto;*/
+        }
+
+        .btn {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .hero img { 
+            width: 400px;
+            height: 400px; 
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* =========================================
+           ABOUT SECTION (Mother & Son)
+           ========================================= */
+        .about {
+            padding: 4rem 0;
+            background-color: var(--white);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr; /* Two columns */
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            color: var(--quarterary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Placeholder for Images */
+        .about-img {
+            width: 100%;
+            height: 300px;
+            background-color: #ddd; /* Replace this with your actual image */
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+        }
+
+        /* =========================================
+           SERVICES SECTION
+           ========================================= */
+        .services {
+            padding: 4rem 0;
+            background-color: var(--secondary-color);
+        }
+
+        .services h2 {
+            text-align: center;
+            color: var(--quarterary-color);
+            margin-bottom: 3rem;
+        }
+
+        .service-cards {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 350px; /* Adjust width as needed */
+        }
+
+        .card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* =========================================
+           CONTACT SECTION
+           ========================================= */
+        .contact {
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .contact-info {
+            margin-top: 2rem;
+        }
+
+        /* =========================================
+           FOOTER
+           ========================================= */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: auto;
+        }
+
+        /* =========================================
+           RESPONSIVE (Mobile Friendly)
+           ========================================= */
+        @media (max-width: 768px) {
+            .about-grid { grid-template-columns: 1fr; } /* Stack columns on mobile */
+            .service-cards { flex-direction: column; align-items: center; } /* Stack cards */
+            .nav-container { flex-direction: column; gap: 1rem; } /* Stack nav items */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container nav-container">
+            <!-- EDIT LOGO TEXT HERE -->
+            <a href="#" class="logo">GLOW & FLOW</a> 
+            <!-- EDIT NAVIGATION LINKS HERE -->
+            <nav>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero">
+        <div class="container hero-grid">
+            <!-- EDIT HERO TEXT HERE -->
+             <div class="hero-text">
+                 <h1>HOLISTIC MASSAGE</h1> 
+            <h2>MOTHER & SON WELLNESS TEAM</h2>
+            <p>Experience relaxation and rejuvenation with an enthusiastic mother and son duo. Specializing in scalp treatments and therapeutic massage.</p>
+            <a href="#contact" class="btn">Book Your Appointment</a>
+             </div>
+        <div class="hero-img"> 
+            <img src="/Users/vincecayme/Code/website/Designer.png" alt="Mother and Son">
+        </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="about">
+        <div class="container about-grid">
+            <!-- 
+                REPLACE THE DIV BELOW WITH YOUR IMAGE TAG:
+                <img src="your-image.jpg" alt="Mother and Son Spa Owners"> 
+            -->
+            <div class="about-img">
+                [Insert Photo of Mom Here]
+            </div>
+            
+            <div class="about-text">
+                <!-- EDIT ABOUT TEXT HERE -->
+                <h2>Meet the Duo</h2>
+                <p>Welcome to our family-owned sanctuary. We believe in wholesome, natural healing passed down through generations.</p>
+                <br>
+                <p><strong>Roselle</strong> - Specializing in scalp health and aromatherapy.</p>
+                <p><strong>Franz</strong> - Expert in deep tissue massage and relaxation.</p>
+                <br>
+                <p>We combine traditional techniques with a warm, family atmosphere to help you unwind.</p>
+            </div>
+            <div class="about-img">
+                [Insert Photo of Son Here]
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            
+            <div class="service-cards">
+                <!-- SERVICE 1: HAIR -->
+                <div class="card">
+                    <!-- 
+                        REPLACE THE DIV BELOW WITH YOUR IMAGE TAG:
+                        <img src="hair-treatment.jpg" alt="Scalp Treatment"> 
+                    -->
+                    <div class="about-img" style="height: 200px;">[Hair Image]</div>
+                    
+                    <h3>Hair & Scalp Treatments</h3>
+                    <p>Nourishing masks, deep cleansing scrubs, and scalp massages designed to restore vitality and shine.</p>
+                    <br>
+                    <!-- EDIT PRICING HERE -->
+                    <p><strong>$50 - $80</strong></p>
+                </div>
+
+                <!-- SERVICE 2: MASSAGE -->
+                <div class="card">
+                    <!-- 
+                        REPLACE THE DIV BELOW WITH YOUR IMAGE TAG:
+                        <img src="massage.jpg" alt="Massage Therapy"> 
+                    -->
+                    <div class="about-img" style="height: 200px;">[Massage Image]</div>
+                    
+                    <h3>Therapeutic Massage</h3>
+                    <p>Relaxing Swedish or deep tissue massage to relieve stress and tension. Perfect for couples.</p>
+                    <br>
+                    <!-- EDIT PRICING HERE -->
+                    <p><strong>$60 - $120</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <!-- EDIT CONTACT INFO HERE -->
+            <h2>Visit Us Today</h2>
+            <p>We are located in the heart of the Eastern Suburbs.</p>
+            
+            <div class="contact-info">
+                <!-- EDIT ADDRESS HERE -->
+                <p>📍 Unit 1/38 Cypress Avenue, Boronia, VIC 3155</p>
+                <!-- EDIT PHONE HERE -->
+                <p>📞 +61 425 069 956</p>
+                <!-- EDIT EMAIL HERE -->
+                <p>✉️ roselle.dolera@yahoo.com</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2023 [Business Name]. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
