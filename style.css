@@ -64,7 +64,7 @@ header {
     font-size: 1.5rem;
     font-weight: bold;
     font-family: var(--font-secondary);
-    color: goldenrod;
+    color: var(--primary-color);
 }
 
 nav ul {
