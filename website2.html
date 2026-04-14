@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Glow & Flow</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --sage:#6b7c5c;--sage-light:#e8ede0;--sage-mid:#c2ceb0;
+    --cream:#f7f4ee;--warm:#a07850;--warm-light:#eeddd0;
+    --dark:#2c2a25;--mid:#5a5650;--soft:#8a8680;
+  }
+  body{font-family:'Georgia',serif;background:var(--cream);color:var(--dark);line-height:1.7}
+  a{text-decoration:none;color:inherit}
+
+  /* NAV */
+  nav{position:sticky;top:0;z-index:100;background:var(--cream);border-bottom:1px solid var(--sage-mid);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{font-size:1.3rem;letter-spacing:.12em;color:var(--sage);font-style:italic}
+  .nav-links{display:flex;gap:2rem;list-style:none}
+  .nav-links a{font-family:sans-serif;font-size:.85rem;letter-spacing:.1em;color:var(--mid);text-transform:uppercase}
+  .nav-links a:hover{color:var(--sage)}
+  .nav-cta{font-family:sans-serif;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;background:var(--sage);color:#fff;padding:.55rem 1.3rem;border-radius:2px}
+  .nav-cta:hover{background:#576547}
+
+  /* HERO */
+  .hero{min-height:92vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:3rem;padding:5% 8%;background:linear-gradient(135deg,var(--cream) 60%,var(--sage-light))}
+  .hero-text h1{font-size:clamp(2rem,4vw,3.2rem);font-weight:400;line-height:1.2;color:var(--dark);margin-bottom:.4rem}
+  .hero-text h1 em{color:var(--sage);font-style:italic}
+  .hero-sub{font-family:sans-serif;font-size:.9rem;letter-spacing:.18em;text-transform:uppercase;color:var(--warm);margin-bottom:1.4rem}
+  .hero-text p{font-size:1.05rem;color:var(--mid);max-width:420px;margin-bottom:2rem}
+  .btn-primary{display:inline-block;font-family:sans-serif;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;background:var(--sage);color:#fff;padding:.75rem 2rem;border-radius:2px}
+  .btn-primary:hover{background:#576547}
+  .btn-outline{display:inline-block;font-family:sans-serif;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--sage);color:var(--sage);padding:.72rem 1.8rem;border-radius:2px;margin-left:1rem}
+  .btn-outline:hover{background:var(--sage-light)}
+  .hero-img{display:flex;justify-content:center;align-items:center}
+  .hero-badge{background:var(--sage-light);border-radius:50%;width:clamp(260px,32vw,380px);height:clamp(260px,32vw,380px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;border:2px solid var(--sage-mid)}
+  .hero-badge .icon{font-size:3rem;margin-bottom:.8rem}
+  .hero-badge p{font-size:1rem;color:var(--sage);font-style:italic;line-height:1.5}
+  .hero-badge span{font-family:sans-serif;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);margin-top:.5rem}
+
+  /* SECTION SHARED */
+  section{padding:6rem 8%}
+  .section-label{font-family:sans-serif;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--warm);margin-bottom:.6rem}
+  .section-title{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:400;line-height:1.3;margin-bottom:1.4rem}
+  .section-title em{color:var(--sage);font-style:italic}
+  .divider{width:48px;height:2px;background:var(--sage-mid);margin-bottom:1.8rem}
+
+  /* ABOUT */
+  .about{background:#fff;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+  .about-text p{color:var(--mid);font-size:1rem;margin-bottom:1.2rem}
+  .team-cards{display:flex;flex-direction:column;gap:1rem}
+  .team-card{background:var(--sage-light);border-radius:4px;padding:1.2rem 1.5rem;display:flex;gap:1rem;align-items:flex-start}
+  .team-card .initials{min-width:44px;height:44px;background:var(--sage);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-family:sans-serif;font-size:.85rem;letter-spacing:.05em}
+  .team-card h4{font-size:1rem;font-weight:400;color:var(--dark);margin-bottom:.2rem}
+  .team-card p{font-family:sans-serif;font-size:.88rem;color:var(--mid)}
+
+  /* PHILOSOPHY */
+  .philosophy{background:var(--sage);text-align:center;padding:5rem 10%}
+  .philosophy .section-label{color:var(--sage-light);opacity:.8}
+  .philosophy h2{font-size:clamp(1.6rem,3vw,2.6rem);font-weight:400;color:#fff;line-height:1.4;margin-bottom:1rem}
+  .philosophy h2 em{color:var(--sage-light)}
+  .philosophy p{color:rgba(255,255,255,.82);font-size:1.05rem;max-width:640px;margin:0 auto}
+
+  /* SERVICES */
+  .services{background:var(--cream)}
+  .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+  .service-card{background:#fff;border-radius:6px;overflow:hidden;border:1px solid #e0dbd0;transition:transform .2s,box-shadow .2s}
+  .service-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.07)}
+  .service-img{height:180px;background:var(--sage-light);display:flex;align-items:center;justify-content:center;font-size:3rem}
+  .service-body{padding:1.5rem}
+  .service-body h3{font-size:1.1rem;font-weight:400;color:var(--dark);margin-bottom:.5rem}
+  .service-body p{font-family:sans-serif;font-size:.88rem;color:var(--mid);line-height:1.6;margin-bottom:1rem}
+  .service-price{font-family:sans-serif;font-size:.82rem;letter-spacing:.08em;color:var(--warm);font-weight:600}
+
+  /* TESTIMONIALS */
+  .testimonials{background:var(--warm-light)}
+  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+  .testi-card{background:#fff;border-radius:6px;padding:1.8rem;border:1px solid #e0d8d0}
+  .testi-card .quote{font-size:2rem;color:var(--warm);line-height:1;margin-bottom:.8rem}
+  .testi-card p{font-size:.97rem;color:var(--mid);font-style:italic;margin-bottom:1.2rem;line-height:1.7}
+  .testi-author{font-family:sans-serif;font-size:.82rem;letter-spacing:.08em;color:var(--warm);text-transform:uppercase}
+
+  /* CTA */
+  .cta-section{background:var(--dark);text-align:center;padding:6rem 8%}
+  .cta-section .section-label{color:var(--sage-mid)}
+  .cta-section h2{font-size:clamp(1.8rem,3vw,2.8rem);color:#fff;font-weight:400;margin-bottom:1rem}
+  .cta-section h2 em{color:var(--sage-mid);font-style:italic}
+  .cta-section p{color:rgba(255,255,255,.65);font-size:1rem;margin-bottom:2.2rem;max-width:480px;margin-left:auto;margin-right:auto}
+  .btn-light{display:inline-block;font-family:sans-serif;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;background:#fff;color:var(--dark);padding:.8rem 2.2rem;border-radius:2px}
+  .btn-light:hover{background:var(--sage-light)}
+
+  /* CONTACT */
+  .contact{background:#fff;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+  .contact-info p{font-family:sans-serif;font-size:.95rem;color:var(--mid);margin-bottom:1.8rem}
+  .contact-item{display:flex;align-items:flex-start;gap:.8rem;margin-bottom:1.2rem}
+  .contact-icon{width:36px;height:36px;background:var(--sage-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+  .contact-item div p{font-family:sans-serif;font-size:.85rem;color:var(--soft);margin-bottom:.1rem}
+  .contact-item div span{font-family:sans-serif;font-size:.92rem;color:var(--dark)}
+  .hours-card{background:var(--sage-light);border-radius:6px;padding:1.5rem}
+  .hours-card h4{font-size:1rem;font-weight:400;color:var(--dark);margin-bottom:1rem}
+  .hours-row{display:flex;justify-content:space-between;font-family:sans-serif;font-size:.88rem;padding:.4rem 0;border-bottom:1px solid var(--sage-mid);color:var(--mid)}
+  .hours-row:last-child{border:none}
+  .hours-row span:last-child{color:var(--sage);font-weight:600}
+
+  /* FOOTER */
+  footer{background:var(--dark);padding:2rem 8%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+  .footer-logo{font-size:1.1rem;letter-spacing:.12em;color:rgba(255,255,255,.5);font-style:italic}
+  footer p{font-family:sans-serif;font-size:.78rem;color:rgba(255,255,255,.35);letter-spacing:.06em}
+
+  @media(max-width:800px){
+    .hero,.about,.contact{grid-template-columns:1fr}
+    .services-grid,.testi-grid{grid-template-columns:1fr}
+    .hero-img{display:none}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Glow & Flow</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Book Now</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-text">
+    <p class="hero-sub">Mother &amp; Son Wellness Team</p>
+    <h1>Holistic healing,<br><em>rooted in care</em></h1>
+    <p>Experience relaxation and rejuvenation with Roselle and Franz — a family duo specialising in scalp treatments and therapeutic massage.</p>
+    <a href="#contact" class="btn-primary">Book Your Appointment</a>
+    <a href="#services" class="btn-outline">Our Services</a>
+  </div>
+  <div class="hero-img">
+    <div class="hero-badge">
+      <div class="icon">🌿</div>
+      <p>"We treat the scalp like a <em>garden</em> — nurture the roots, and everything flourishes."</p>
+      <span>— Roselle &amp; Franz</span>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="about-text">
+    <p class="section-label">Meet the Duo</p>
+    <h2 class="section-title">A family-owned <em>sanctuary</em></h2>
+    <div class="divider"></div>
+    <p>Welcome to Glow &amp; Flow — a place where wholesome, natural healing passed down through generations comes to life. We believe wellness is not just a treatment; it's a feeling you carry home.</p>
+    <p>We combine traditional techniques with a warm, family atmosphere designed to help you truly unwind.</p>
+  </div>
+  <div class="team-cards">
+    <div class="team-card">
+      <div class="initials">R</div>
+      <div>
+        <h4>Roselle</h4>
+        <p>Specialising in scalp health and aromatherapy. Over a decade of experience in holistic hair and scalp care using premium organic extracts.</p>
+      </div>
+    </div>
+    <div class="team-card">
+      <div class="initials">F</div>
+      <div>
+        <h4>Franz</h4>
+        <p>Expert in deep tissue massage and relaxation. Certified in Swedish and therapeutic techniques, focused on relieving stress and restoring balance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="philosophy">
+  <p class="section-label">Our Philosophy</p>
+  <h2>We treat the scalp like a <em>garden</em></h2>
+  <p>Using premium organic extracts and detoxifying rituals, we clear away the buildup to let your hair flourish. Our treatments are a sensory reset — designed to restore balance from the root up.</p>
+</div>
+
+<section class="services" id="services">
+  <p class="section-label">What We Offer</p>
+  <h2 class="section-title">Our <em>Services</em></h2>
+  <div class="divider"></div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-img">🌱</div>
+      <div class="service-body">
+        <h3>Hair &amp; Scalp Treatments</h3>
+        <p>Nourishing masks, deep cleansing scrubs, and scalp massages designed to restore vitality, reduce dandruff, and bring back natural shine.</p>
+        <div class="service-price">$50 – $80</div>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-img">🤲<img src="images/franzmassage.jpg" alt="franz massage"></div>
+      <div class="service-body">
+        <h3>Therapeutic Massage</h3>
+        <p>Relaxing Swedish or deep tissue massage to relieve stress and tension. Perfect for individuals and couples seeking deep relaxation.</p>
+        <div class="service-price">$60 – $120</div>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-img">🌸</div>
+      <div class="service-body">
+        <h3>Aromatherapy Session</h3>
+        <p>A calming full-body experience using therapeutic-grade essential oils to ease anxiety, improve sleep, and restore your natural energy flow.</p>
+        <div class="service-price">$55 – $90</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <p class="section-label">Kind Words</p>
+  <h2 class="section-title">What our clients <em>say</em></h2>
+  <div class="divider"></div>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="quote">"</div>
+      <p>Roselle's scalp treatment completely transformed my hair. I left feeling like a new person — so relaxed and my scalp has never felt healthier.</p>
+      <div class="testi-author">— Sarah M., Boronia</div>
+    </div>
+    <div class="testi-card">
+      <div class="quote">"</div>
+      <p>Franz is incredibly skilled. His deep tissue massage sorted out months of tension in my back in just one session. Highly recommend!</p>
+      <div class="testi-author">— James T., Knox</div>
+    </div>
+    <div class="testi-card">
+      <div class="quote">"</div>
+      <p>Such a warm and welcoming team. You can tell this is a true family business — every visit feels personal, caring, and genuinely restorative.</p>
+      <div class="testi-author">— Michelle K., Wantirna</div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-section">
+  <p class="section-label">Ready to Unwind?</p>
+  <h2>Book your session <em>today</em></h2>
+  <p>Whether you're treating a scalp concern or simply need to decompress, we're here to help you glow from the roots up.</p>
+  <a href="#contact" class="btn-light">Get in Touch</a>
+</div>
+
+<section class="contact" id="contact">
+  <div class="contact-info">
+    <p class="section-label">Find Us</p>
+    <h2 class="section-title">Visit Us <em>Today</em></h2>
+    <div class="divider"></div>
+    <p>Located in the heart of Melbourne's Eastern Suburbs, we'd love to welcome you in.</p>
+    <div class="contact-item">
+      <div class="contact-icon">📍</div>
+      <div>
+        <p>Address</p>
+        <span>Unit 1/38 Cypress Avenue, Boronia VIC 3155</span>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">📞</div>
+      <div>
+        <p>Phone</p>
+        <span>+61 425 069 956</span>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">✉️</div>
+      <div>
+        <p>Email</p>
+        <span>roselle.dolera@yahoo.com</span>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="hours-card">
+      <h4>Opening Hours</h4>
+      <div class="hours-row"><span>Monday – Friday</span><span>9:00am – 6:00pm</span></div>
+      <div class="hours-row"><span>Saturday</span><span>9:00am – 4:00pm</span></div>
+      <div class="hours-row"><span>Sunday</span><span>By appointment</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Glow & Flow</div>
+  <p>© 2026 Glow & Flow. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
