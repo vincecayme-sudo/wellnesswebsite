@@ -16,12 +16,13 @@
 
   /* NAV */
   nav{position:sticky;top:0;z-index:100;background:var(--cream);border-bottom:1px solid var(--sage-mid);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:64px}
-  .logo{font-size:1.3rem;letter-spacing:.12em;color:var(--sage);font-style:italic}
-  .nav-links{display:flex;gap:2rem;list-style:none}
+  .logo{font-size:1.3rem;letter-spacing:.12em;color:var(--sage);font-style:italic;margin-right: -320px;}
+  .nav-links{display:flex;gap:2rem;list-style:none;}
   .nav-links a{font-family:sans-serif;font-size:.85rem;letter-spacing:.1em;color:var(--mid);text-transform:uppercase}
   .nav-links a:hover{color:var(--sage)}
   .nav-cta{font-family:sans-serif;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;background:var(--sage);color:#fff;padding:.55rem 1.3rem;border-radius:2px}
   .nav-cta:hover{background:#576547}
+  .nav-links a.active { color: var(--sage); text-decoration: underline; text-underline-offset: 4px; }
 
 /* HERO */
 .hero{position:relative;min-height:92vh;display:flex;align-items:center;padding:5% 8%;overflow:hidden;}
@@ -127,13 +128,14 @@
 <body>
 
 <nav>
-  <div class="logo">The Scalp Lab</div>
+  <div class="logo">The Scalp Lab - Massage and Wellness</div>
   <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="index.html"class="active">Home</a></li>
+    <li><a href="about.html" >About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="contact.html">Contact</a></li>
   </ul>
-  <a href="#contact" class="nav-cta">Book Now</a>
+  <a href="https://calendly.com/3kings-scalplab" target="_blank" class="nav-cta">Book Now</a>
 </nav>
 
 <section class="hero">

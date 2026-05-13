@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>About Us – The Scalp Lab</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --sage:#6b7c5c;--sage-light:#e8ede0;--sage-mid:#c2ceb0;
+    --cream:#f7f4ee;--warm:#a07850;--warm-light:#eeddd0;
+    --dark:#2c2a25;--mid:#5a5650;--soft:#8a8680;
+  }
+  body{font-family:'Georgia',serif;background:var(--cream);color:var(--dark);line-height:1.7}
+  a{text-decoration:none;color:inherit}
+
+  /* NAV */
+  nav{position:sticky;top:0;z-index:100;background:var(--cream);border-bottom:1px solid var(--sage-mid);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{font-size:1.3rem;letter-spacing:.12em;color:var(--sage);font-style:italic;margin-right: -320px;}
+  .nav-links{display:flex;gap:2rem;list-style:none}
+  .nav-links a{font-family:sans-serif;font-size:.85rem;letter-spacing:.1em;color:var(--mid);text-transform:uppercase}
+  .nav-links a:hover{color:var(--sage)}
+  .nav-cta{font-family:sans-serif;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;background:var(--sage);color:#fff;padding:.55rem 1.3rem;border-radius:2px}
+  .nav-cta:hover{background:#576547}
+  .nav-links a.active { color: var(--sage); text-decoration: underline; text-underline-offset: 4px; }
+
+  /* PAGE HERO */
+  .page-hero{background:var(--sage);padding:5rem 8%;text-align:center}
+  .page-hero .section-label{font-family:sans-serif;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--sage-light);opacity:.8;margin-bottom:.6rem}
+  .page-hero h1{font-size:clamp(2rem,4vw,3rem);font-weight:400;color:#fff;line-height:1.3}
+  .page-hero h1 em{color:var(--sage-light);font-style:italic}
+  .page-hero p{color:rgba(255,255,255,.8);font-size:1.05rem;max-width:560px;margin:1rem auto 0}
+
+  /* SHARED */
+  section{padding:6rem 8%}
+  .section-label{font-family:sans-serif;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--warm);margin-bottom:.6rem}
+  .section-title{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:400;line-height:1.3;margin-bottom:1.4rem}
+  .section-title em{color:var(--sage);font-style:italic}
+  .divider{width:48px;height:2px;background:var(--sage-mid);margin-bottom:1.8rem}
+
+  /* VIDEO */
+  .video-section{background:#fff;text-align:center}
+  .video-section .section-label,.video-section .section-title,.video-section .divider{text-align:left;max-width:700px;margin-left:auto;margin-right:auto}
+  .video-section .divider{margin-left:auto;margin-right:auto}
+  .video-wrapper{max-width:800px;margin:0 auto;border-radius:8px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.1)}
+  .video-placeholder{background:var(--sage-light);height:450px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;border:2px dashed var(--sage-mid)}
+  .video-placeholder .play{width:72px;height:72px;background:var(--sage);border-radius:50%;display:flex;align-items:center;justify-content:center}
+  .video-placeholder .play::after{content:'';border-left:28px solid #fff;border-top:16px solid transparent;border-bottom:16px solid transparent;margin-left:6px}
+  .video-placeholder p{font-family:sans-serif;font-size:.9rem;color:var(--soft)}
+  .video-placeholder code{font-size:.8rem;background:#fff;padding:.3rem .6rem;border-radius:3px;color:var(--sage)}
+
+  /* TEAM */
+  .team-section{background:var(--cream)}
+  .team-photos{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:3rem}
+  .team-photo-card{background:var(--sage-light);border-radius:4px;padding:1.2rem 1.5rem;overflow:hidden}
+  .team-photo-card .img-wrap{width:100%;height:480px;overflow:hidden;border-radius:4px;margin-bottom:1rem}
+  .team-photo-card .img-wrap img{width:100%;height:100%;object-fit:cover}
+  .team-photo-card h3{font-size:1.1rem;font-weight:400;color:var(--dark);margin-bottom:.3rem}
+  .team-photo-card .role{font-family:sans-serif;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--warm);margin-bottom:.8rem}
+  .team-photo-card p{font-family:sans-serif;font-size:.88rem;color:var(--mid);line-height:1.6}
+
+  /* CREDENTIALS */
+  .credentials{background:#fff}
+  .cred-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:3rem}
+  .cred-card{background:var(--sage-light);border-radius:6px;padding:2rem}
+  .cred-card h3{font-size:1.1rem;font-weight:400;color:var(--dark);margin-bottom:1.2rem;padding-bottom:.8rem;border-bottom:1px solid var(--sage-mid)}
+  .cred-item{display:flex;gap:.8rem;margin-bottom:1rem;align-items:flex-start}
+  .cred-icon{min-width:28px;height:28px;background:var(--sage);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.75rem}
+  .cred-item div p{font-family:sans-serif;font-size:.88rem;color:var(--dark);font-weight:600;margin-bottom:.1rem}
+  .cred-item div span{font-family:sans-serif;font-size:.82rem;color:var(--soft)}
+
+  /* GALLERY */
+  .gallery-section{background:var(--cream)}
+  .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:3rem}
+  .gallery-grid .tall{grid-row:span 2}
+  .gallery-item{background:var(--sage-light);border-radius:6px;overflow:hidden;min-height:200px}
+  .gallery-item img{width:100%;height:100%;object-fit:cover;display:block}
+  .gallery-placeholder{width:100%;height:100%;min-height:200px;display:flex;align-items:center;justify-content:center;font-family:sans-serif;font-size:.8rem;color:var(--soft);flex-direction:column;gap:.4rem;padding:1rem;text-align:center}
+  .gallery-placeholder span{font-size:1.5rem}
+
+  /* WHAT TO EXPECT */
+  .expect-section{background:var(--dark)}
+  .expect-section .section-label{color:var(--sage-mid)}
+  .expect-section .section-title{color:#fff}
+  .expect-section .section-title em{color:var(--sage-mid)}
+  .expect-section .divider{background:var(--sage)}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem}
+  .step{text-align:center;padding:1.5rem}
+  .step-num{width:48px;height:48px;border-radius:50%;background:var(--sage);color:#fff;font-family:sans-serif;font-size:1.1rem;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem}
+  .step h4{font-size:1rem;font-weight:400;color:#fff;margin-bottom:.5rem}
+  .step p{font-family:sans-serif;font-size:.85rem;color:rgba(255,255,255,.6);line-height:1.6}
+  .step-connector{display:none}
+
+  /* CTA */
+  .cta-bar{background:var(--warm-light);padding:4rem 8%;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+  .cta-bar h2{font-size:clamp(1.4rem,2.5vw,2rem);font-weight:400}
+  .cta-bar h2 em{color:var(--sage);font-style:italic}
+  .btn-primary{display:inline-block;font-family:sans-serif;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;background:var(--sage);color:#fff;padding:.75rem 2rem;border-radius:2px}
+  .btn-primary:hover{background:#576547}
+
+  /* FOOTER */
+  footer{background:var(--dark);padding:2rem 8%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+  .footer-logo{font-size:1.1rem;letter-spacing:.12em;color:rgba(255,255,255,.5);font-style:italic}
+  footer p{font-family:sans-serif;font-size:.78rem;color:rgba(255,255,255,.35);letter-spacing:.06em}
+
+  @media(max-width:800px){
+    .team-photos,.cred-grid,.steps{grid-template-columns:1fr}
+    .gallery-grid{grid-template-columns:1fr 1fr}
+    .gallery-grid .tall{grid-row:span 1}
+    .cta-bar{flex-direction:column;text-align:center}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">The Scalp Lab - Massage and Wellness</div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="https://calendly.com/3kings-scalplab" target="_blank" class="nav-cta">Book Now</a>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <p class="section-label">Our Story</p>
+  <h1>Meet the people behind<br><em>The Scalp Lab</em></h1>
+  <p>A mother and son duo bringing together decades of nursing expertise and therapeutic massage — rooted in care, driven by family.</p>
+</div>
+
+<!-- VIDEO -->
+<section class="video-section">
+  <p class="section-label">Meet the Duo</p>
+  <h2 class="section-title">Hear it from <em>us</em></h2>
+  <div class="divider"></div>
+  <div class="video-wrapper">
+    <!-- REPLACE src with your YouTube embed URL e.g: https://www.youtube.com/embed/YOUR_VIDEO_ID -->
+    <div class="video-placeholder">
+      <div class="play"></div>
+      <p>Your intro video goes here</p>
+      <code>Replace this with your YouTube iframe embed</code>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team-section" id="team">
+  <p class="section-label">The Team</p>
+  <h2 class="section-title">Rooted in care,<br>designed to <em>heal</em></h2>
+  <div class="divider"></div>
+  <div class="team-photos">
+    <div class="team-photo-card">
+      <div class="img-wrap">
+        <img src="images/roselle_portrait.webp" alt="Roselle" style="width:100%;height:100%;object-fit:cover;object-position:50% 30%;transform-origin:center top;">
+      </div>
+      <h3>Roselle</h3>
+      <p class="role">Co-Founder · Scalp Specialist</p>
+      <p>Specialising in scalp health, massage and holistic wellness. A registered nurse with experience of over 30 years, Roselle brings a clinical understanding of the body to every treatment she delivers.</p>
+    </div>
+    <div class="team-photo-card">
+      <div class="img-wrap">
+        <img src="images/franz_portrait.webp" alt="Franz">
+      </div>
+      <h3>Franz</h3>
+      <p class="role">Co-Founder · Massage Therapist</p>
+      <p>Qualified expert in restoration, relaxation, and therapeutic deep tissue massage. Franz combines technique with intuition to deliver treatments that leave clients feeling genuinely restored.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CREDENTIALS -->
+<section class="credentials">
+  <p class="section-label">Qualifications</p>
+  <h2 class="section-title">Our <em>credentials</em></h2>
+  <div class="divider"></div>
+  <div class="cred-grid">
+    <div class="cred-card">
+      <h3>Roselle</h3>
+      <div class="cred-item">
+        <div class="cred-icon">✓</div>
+        <div>
+          <p>Registered Nurse</p>
+          <span>30+ years clinical experience</span>
+        </div>
+      </div>
+      <div class="cred-item">
+        <div class="cred-icon">✓</div>
+        <div>
+          <p>Scalp Health Specialist</p>
+          <span>Organic scalp detox & aromatherapy</span>
+        </div>
+      </div>
+      <div class="cred-item">
+        <div class="cred-icon">✓</div>
+        <div>
+          <p>Holistic Wellness Practitioner</p>
+          <span>Add your certification here</span>
+        </div>
+      </div>
+    </div>
+    <div class="cred-card">
+      <h3>Franz</h3>
+      <div class="cred-item">
+        <div class="cred-icon">✓</div>
+        <div>
+          <p>Certified Massage Therapist</p>
+          <span>Deep tissue & Swedish massage</span>
+        </div>
+      </div>
+      <div class="cred-item">
+        <div class="cred-icon">✓</div>
+        <div>
+          <p>Therapeutic Bodywork</p>
+          <span>Stress & tension relief specialist</span>
+        </div>
+      </div>
+      <div class="cred-item">
+        <div class="cred-icon">✓</div>
+        <div>
+          <p>Add Qualification</p>
+          <span>Add your certification here</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-section">
+  <p class="section-label">Our Space</p>
+  <h2 class="section-title">The <em>treatment space</em></h2>
+  <div class="divider"></div>
+  <div class="gallery-grid">
+    <div class="gallery-item tall">
+      <div class="gallery-placeholder"><span>🖼</span>space-1.jpg</div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder"><span>🖼</span>space-2.jpg</div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder"><span>🖼</span>space-3.jpg</div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder"><span>🖼</span>space-4.jpg</div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder"><span>🖼</span>space-5.jpg</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT TO EXPECT -->
+<section class="expect-section">
+  <p class="section-label">First Visit</p>
+  <h2 class="section-title">What to <em>expect</em></h2>
+  <div class="divider"></div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h4>Book Your Session</h4>
+      <p>Contact us by phone or email to choose your service and preferred time. We'll confirm your appointment within 24 hours.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h4>Arrive & Settle In</h4>
+      <p>Come 5–10 minutes early. We'll walk you through the space, offer you a drink, and chat about what you'd like to get out of the session.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h4>Your Treatment</h4>
+      <p>Relax and let us do the rest. Every treatment is tailored to your needs — no rush, no shortcuts.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <h4>Leave Restored</h4>
+      <p>We'll send you home with aftercare tips and product recommendations so the results last well beyond your visit.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-bar">
+  <h2>Ready to experience<br><em>The Scalp Lab?</em></h2>
+  <a href="website.html#contact" class="btn-primary">Book Your Appointment</a>
+</div>
+
+<footer>
+  <div class="footer-logo">The Scalp Lab</div>
+  <p>© 2026 The Scalp Lab. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
